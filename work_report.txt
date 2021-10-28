@@ -1,0 +1,19 @@
+## Group 6 Work Report ##
+
+Name: Oskar Blyt
+Total Number of Hours Spent: 2
+Contributions: 
+- Created TODO list and initial commit to git repository
+-
+-
+-
+
+Name: <name of Group member>
+Total Number of Hours Spent: <>
+Contributions:
+-
+
+Name: <name of Group member>
+Total Number of Hours Spent: <>
+Contributions:
+-
