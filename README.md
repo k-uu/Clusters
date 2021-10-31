@@ -1,6 +1,6 @@
 # clusters.py
 
-### By: Oskar Blyt, Alina Eh, Selina Mather
+### By: Oskar Blyt, Alina Ehrl, Selina Mather
 
 Code is inspired by the methodology outlined in:
 [A New Genetic Algorithm Approach Applied to
