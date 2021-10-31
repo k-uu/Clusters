@@ -1,10 +1,14 @@
 ## Group 6 Work Report ##
 
 Name: Oskar Blyt
-Total Number of Hours Spent: 2
+Total Number of Hours Spent: 3.5
 Contributions: 
 - Created TODO list and initial commit to git repository
--
+- First iteration of functions in intialization step:
+  - get_point
+  - check_threshold
+  - populate_sphere
+  - calculate_radius
 -
 -
 
