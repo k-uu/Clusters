@@ -12,10 +12,11 @@ Contributions:
 -
 -
 
-Name: <name of Group member>
-Total Number of Hours Spent: <>
+Name: Alina Ehrl
+Total Number of Hours Spent: 1.5
 Contributions:
--
+- created test for successful initialization: plot sphere containing points
+
 
 Name: <name of Group member>
 Total Number of Hours Spent: <>
