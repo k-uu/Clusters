@@ -6,6 +6,9 @@ class Cluster:
     def __init__(self, n, equilibrium_distance):
         self.pos = populate_sphere(n, equilibrium_distance)
 
+    def energy(self):
+        return calculate_lj_energy(self.pos)
+
 
 # calculate radius to be used to initialize clusters given the number of particles and
 # the equilibrium distance between them
@@ -15,6 +18,7 @@ def calculate_radius(n, equilibrium_distance):
 
 # TODO
 def calculate_lj_energy(positions):
+    pass
 
 
 # populate a sphere with n randomly placed points with equilibrium distance >= separation distance (0.8)
@@ -59,7 +63,5 @@ def check_threshold(pos, p, distance):
 def make_population(size, particles, equilibrium_distance):
 
     return [Cluster(particles, equilibrium_distance)] * size
-
-
 
 
