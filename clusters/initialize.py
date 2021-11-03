@@ -22,11 +22,12 @@ def calculate_lj_energy(pos, n):
     energy = 0.0
     for i in range(n - 1):
         for j in range(i + 1, n):
-            r_ij = pos[i, :] - pos[j, :]
+            r_ij = pos[i] - pos[j]
             r_ij2 = np.dot(r_ij, r_ij)
-            r_ij6 = r_ij2 ** 3
-            energy += 2 * 4 / r_ij6 * (1 / r_ij2 - 1)  # potential acts on both particles in each pair
+            r_ij6_inv = 1 / (r_ij2 ** 3)
+            energy += 4 * r_ij6_inv * (r_ij6_inv - 1)
     return energy
+
 
 # populate a sphere with n randomly placed points with equilibrium distance >= separation distance (0.8)
 def populate_sphere(n, equilibrium_distance):

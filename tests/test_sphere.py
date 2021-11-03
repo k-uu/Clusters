@@ -13,7 +13,6 @@ n = 100
 eq_distance = 0.8
 r = initialize.calculate_radius(n, eq_distance)
 pop = initialize.make_population(p, n, eq_distance)
-print(len(pop))
 pos = pop[0].pos
 
 

@@ -20,7 +20,7 @@ outputfile = open(file, "w")
 
 for i in range(pop_size):
     outputfile.write('{}\n'.format(n))
-    outputfile.write('Cluster {}\n'.format(i))
+    outputfile.write('Energy: {}\n'.format(pop_list[i].energy()))
     p = pop_list[i].pos
     for j in range(n):
         outputfile.write('LJ {:12.6g} {:12.6g} {:12.6g} \n'.format(*p[j]))
