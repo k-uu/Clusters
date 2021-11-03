@@ -5,6 +5,9 @@ class Cluster:
 
     def __init__(self, n, equilibrium_distance):
         self.pos = populate_sphere(n, equilibrium_distance)
+        
+    def position(self):
+        return self.pos
 
     def energy(self):
         return calculate_lj_energy(self.pos)
