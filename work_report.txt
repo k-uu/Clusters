@@ -9,7 +9,10 @@ Contributions:
   - check_threshold
   - populate_sphere
   - calculate_radius
-- Cluster class, make_population
+  - make_population
+- Cluster class
+    - energy -> calculate_lj_energy
+-
 -
 
 Name: <name of Group member>
