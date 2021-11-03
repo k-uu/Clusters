@@ -15,7 +15,10 @@ Contributions:
 Name: Alina Ehrl
 Total Number of Hours Spent: 1.5
 Contributions:
-- created test for successful initialization: plot sphere containing points
+- test_sphere.py
+  - created test for successful initialization: plot sphere containing points
+- xyz_file.py
+  - created file in xyz format with initial population
 
 
 Name: <name of Group member>
