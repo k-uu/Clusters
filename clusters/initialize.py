@@ -10,6 +10,12 @@ class Cluster:
     def energy(self):
         return calculate_lj_energy(self.pos, self.size)
 
+    def __lt__(self, other):
+        return self.energy() < other.energy()
+
+    def __repr__(self):
+        return "Particles: {}, Energy: {}".format(self.size, self.energy())
+
 
 # calculate radius to be used to initialize clusters given the number of particles
 def calculate_radius(n):
@@ -68,6 +74,6 @@ def check_threshold(pos, p, distance):
 # return a population of clusters with given size, number of particles per cluster
 def make_population(size, particles):
 
-    return [Cluster(particles) for i in range(size)]
+    return np.array([Cluster(particles) for i in range(size)])
 
 
