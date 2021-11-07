@@ -1,11 +1,19 @@
 import numpy as np
 
-def energy(pos, size):
-    return calculate_lj_energy(pos, size)
 
-# calculate radius to be used to initialize clusters given the number of particles and
-# the equilibrium distance between them
-def calculate_radius(n, equilibrium_distance):
+class Cluster:
+
+    def __init__(self, n):
+        self.pos = populate_sphere(n)
+        self.size = n
+
+    def energy(self):
+        return calculate_lj_energy(self.pos, self.size)
+
+
+# calculate radius to be used to initialize clusters given the number of particles
+def calculate_radius(n):
+    equilibrium_distance = 2 ** (1 / 6)  # minimum energy (equilibrium) distance given LJ reduced units
     return equilibrium_distance * (0.5 + pow((3 * n) / (4 * np.pi * np.sqrt(2)), (1 / 3)))
 
 
@@ -21,13 +29,11 @@ def calculate_lj_energy(pos, n):
     return energy
 
 
-# populate a sphere with n randomly placed points with equilibrium distance >= separation distance (0.8)
-def populate_sphere(n, equilibrium_distance):
+# populate a sphere with n randomly placed but separated points
+def populate_sphere(n):
     threshold = 0.8
-    if equilibrium_distance < threshold:
-        raise Exception("Equilibrium distance needs to be >= {}".format(threshold))
 
-    radius = calculate_radius(n, equilibrium_distance)
+    radius = calculate_radius(n)
     pos = np.zeros((n, 3))
     count = 0
     while count < n:
@@ -59,26 +65,26 @@ def check_threshold(pos, p, distance):
     return True
 
 
-# return a population of clusters with given size, number of particles per cluster and particle equilibrium distance
-def make_population(size, particles, equilibrium_distance):
+# return a population of clusters with given size, number of particles per cluster
+def make_population(size, particles):
 
-    return [Cluster(particles, equilibrium_distance) for i in range(size)]
+    return [Cluster(particles) for i in range(size)]
 
-#pop_size = number of clusters generated in each population
-#n = number of particles
-#eq_distance = equilibrium distance
-#removal_n = percentage of remove highest energsy clusters
 
-pop_dict = {"Position":[], "Energy":[]}
+# pop_size = number of clusters generated in each population
+# n = number of particles
+# eq_distance = equilibrium distance
+# removal_n = percentage of remove highest energsy clusters
+
+pop_dict = {"Position": [], "Energy": []}
 
 pop_size = 10
 n = 5
-eq_distance = 1.0
 removal_n = 10 
 
 # create initial population
 for i in range(0, pop_size):
-    pop_dict["Position"].append(populate_sphere(n, eq_distance))
+    pop_dict["Position"].append(populate_sphere(n))
     
 for i in range(0, pop_size):
     pop_dict["Energy"].append(calculate_lj_energy(pop_dict["Position"][i], n))
@@ -102,3 +108,4 @@ for i in range(0, len(pop_dict["Position"])):
     p = pop_dict["Position"][i]
     for j in range(n):
         outputfile.write('LJ {:12.6g} {:12.6g} {:12.6g} \n'.format(*p[j]))
+

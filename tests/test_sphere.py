@@ -4,15 +4,13 @@ import matplotlib.pyplot as plt
 
 # input variables
 # n: number of particles
-# eq_distance: equilibrium distance between particles >= 0.8
 # r: radius of sphere
 # p: population size
 
 p = 10
 n = 100
-eq_distance = 0.8
-r = initialize.calculate_radius(n, eq_distance)
-pop = initialize.make_population(p, n, eq_distance)
+r = initialize.calculate_radius(n)
+pop = initialize.make_population(p, n)
 pos = pop[0].pos
 
 

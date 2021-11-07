@@ -3,17 +3,17 @@ import numpy as np
 
 class Cluster:
 
-    def __init__(self, n, equilibrium_distance):
-        self.pos = populate_sphere(n, equilibrium_distance)
+    def __init__(self, n):
+        self.pos = populate_sphere(n)
         self.size = n
 
     def energy(self):
         return calculate_lj_energy(self.pos, self.size)
 
 
-# calculate radius to be used to initialize clusters given the number of particles and
-# the equilibrium distance between them
-def calculate_radius(n, equilibrium_distance):
+# calculate radius to be used to initialize clusters given the number of particles
+def calculate_radius(n):
+    equilibrium_distance = 2 ** (1 / 6)  # minimum energy (equilibrium) distance given LJ reduced units
     return equilibrium_distance * (0.5 + pow((3 * n) / (4 * np.pi * np.sqrt(2)), (1 / 3)))
 
 
@@ -29,13 +29,11 @@ def calculate_lj_energy(pos, n):
     return energy
 
 
-# populate a sphere with n randomly placed points with equilibrium distance >= separation distance (0.8)
-def populate_sphere(n, equilibrium_distance):
+# populate a sphere with n randomly placed but separated points
+def populate_sphere(n):
     threshold = 0.8
-    if equilibrium_distance < threshold:
-        raise Exception("Equilibrium distance needs to be <= {}".format(threshold))
 
-    radius = calculate_radius(n, equilibrium_distance)
+    radius = calculate_radius(n)
     pos = np.zeros((n, 3))
     count = 0
     while count < n:
@@ -67,9 +65,9 @@ def check_threshold(pos, p, distance):
     return True
 
 
-# return a population of clusters with given size, number of particles per cluster and particle equilibrium distance
-def make_population(size, particles, equilibrium_distance):
+# return a population of clusters with given size, number of particles per cluster
+def make_population(size, particles):
 
-    return [Cluster(particles, equilibrium_distance) for i in range(size)]
+    return [Cluster(particles) for i in range(size)]
 
 
