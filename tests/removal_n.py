@@ -71,3 +71,41 @@ def make_population(size, particles):
     return [Cluster(particles) for i in range(size)]
 
 
+# pop_size = number of clusters generated in each population
+# n = number of particles
+# eq_distance = equilibrium distance
+# removal_n = percentage of remove highest energsy clusters
+
+pop_dict = {"Position": [], "Energy": []}
+
+pop_size = 10
+n = 5
+removal_n = 10 
+
+# create initial population
+for i in range(0, pop_size):
+    pop_dict["Position"].append(populate_sphere(n))
+    
+for i in range(0, pop_size):
+    pop_dict["Energy"].append(calculate_lj_energy(pop_dict["Position"][i], n))
+
+# create xyz file where each frame is cluster in the population
+file = "test_population.xyz"
+outputfile = open(file, "w")
+
+
+for i in range(int(pop_size*(removal_n/100))):
+    max_value = max(pop_dict["Energy"])
+    max_index = pop_dict["Energy"].index(max_value)
+    del pop_dict["Energy"][max_index]
+    del pop_dict["Position"][max_index]
+
+
+for i in range(0, len(pop_dict["Position"])):
+    outputfile.write('{}\n'.format(n))
+    outputfile.write('Cluster {}\n'.format(i))
+    outputfile.write('Energy: {}\n'.format(pop_dict["Energy"][i]))
+    p = pop_dict["Position"][i]
+    for j in range(n):
+        outputfile.write('LJ {:12.6g} {:12.6g} {:12.6g} \n'.format(*p[j]))
+
