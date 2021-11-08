@@ -1,7 +1,7 @@
 ## Group 6 Work Report ##
 
 Name: Oskar Blyt
-Total Number of Hours Spent: 6.5
+Total Number of Hours Spent: 7
 Contributions: 
 - Created TODO list and initial commit to git repository
 - First iteration of functions in initialization step:
@@ -18,15 +18,16 @@ Contributions:
 -
 
 Name: Alina Ehrl
-Total Number of Hours Spent: 1.5
+Total Number of Hours Spent: 2.5
 Contributions:
 - test_sphere.py
   - created test for successful initialization: plot sphere containing points
 - xyz_file.py
   - created file in xyz format with initial population
+- first iteration of selection function: test_selection
 
 
-Name: <name of Group member>
-Total Number of Hours Spent: <>
+Name: Selina Mather
+Total Number of Hours Spent: 1
 Contributions:
--
+- first iteration of selection function: test_selection
