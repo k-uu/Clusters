@@ -37,13 +37,12 @@ clusters given the number of particles. It produces an .xyz file containing the 
   generation
   - Determine variation toward creation rate for each individual
   - Sum the variations for individuals created using the same operator to determine the operator's new creation rate
-  - Normalize the creation rates to 1 and multiply each by the number of individuals
+  - Normalize the creation rates for each operator to 1 and multiply each creation rate by the number of individuals
 - Operator Step: (Nov 8 - 12)
- - operators determine the type of individuals produced.
- - Variation in genetic material (atom positions) must be performed in
+- Create variation in genetic material (atom positions). This must be performed in
 order to avoid population stagnation
-  - Select method for variation: Crossover or Mutation
-  - Generate next population
+- Select different operators: Crossover, Mutation
+- Generate next population
 
 *end do*
 
@@ -51,4 +50,4 @@ order to avoid population stagnation
   - Convert coordinates of particles into a format for visualization (VMD?)
   - Test additional genetic variation mechanisms
   - Experiment with different particle sizes
-  - Makefinal presentation and writeup
+  - Make final presentation and writeup
