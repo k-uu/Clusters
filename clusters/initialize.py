@@ -16,6 +16,14 @@ class Cluster:
     def __repr__(self):
         return "Particles: {}, Energy: {}".format(self.size, self.energy())
 
+    def __add__(self, other):
+        if isinstance(other, Cluster):
+            return self.energy() + other.energy()
+        else:
+            return self.energy() + other
+
+    __radd__ = __add__
+
 
 # calculate radius to be used to initialize clusters given the number of particles
 def calculate_radius(n):

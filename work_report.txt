@@ -1,7 +1,7 @@
 ## Group 6 Work Report ##
 
 Name: Oskar Blyt
-Total Number of Hours Spent: 7
+Total Number of Hours Spent: 10
 Contributions: 
 - Created TODO list and initial commit to git repository
 - First iteration of functions in initialization step:
@@ -14,7 +14,11 @@ Contributions:
     - energy -> calculate_lj_energy
     - __lt__
 - remove_top_percent
--
+- Management step:
+    -  Operator Class
+    - creation_variance
+    - new_rate
+    - mean_energy
 -
 
 Name: Alina Ehrl
