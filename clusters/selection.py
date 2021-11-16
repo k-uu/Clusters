@@ -8,3 +8,11 @@ def remove_top_percent(clusters, percent):
     clusters.sort()
     return np.delete(clusters, np.s_[(size - count): size])
 
+
+# return true if at least of the the clusters has reached the energy minima
+def converged(clusters, energy):
+    for c in clusters:
+        if c.energy() <= energy:
+            return True
+    return False
+

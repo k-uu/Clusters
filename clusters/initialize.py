@@ -22,6 +22,18 @@ class Cluster:
         else:
             return self.energy() + other
 
+    def __sub__(self, other):
+        if isinstance(other, Cluster):
+            return self.energy() - other.energy()
+        else:
+            return self.energy() - other
+
+    def __rsub__(self, other):
+        if isinstance(other, Cluster):
+            return other.energy() - self.energy()
+        else:
+            return other - self.energy()
+
     __radd__ = __add__
 
 

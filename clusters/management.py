@@ -1,7 +1,8 @@
 import math
+import copy
 
 import numpy as np
-import initialize
+from clusters import initialize
 
 
 # represents an operator used to create new clusters where rate is its creation rate
@@ -69,11 +70,11 @@ def mean_energy(clusters):
 
 
 # returns a random selection from clusters based on the operator creation rate and
-# final size of new population
+# final size of new population. Returns at least one selection
 def get_targets(op, clusters, size):
-    target_count = int(size * op.rate)
+    target_count = math.ceil(size * op.rate)
     rng = np.random.default_rng()
-    targets = rng.choice(clusters, target_count, replace=False)
+    targets = rng.choice(copy.deepcopy(clusters), target_count, replace=False)
     return targets
 
 
@@ -91,33 +92,36 @@ def creation_variance(delta_e):
 
 # determines the new creation rate for a given operator given the previous population average energy, its newly created
 # individuals and previous creation rate
+# CONSTRAINT: minimum new rate = 0.01
 def new_rate(e_prev, created, rate_prev):
+    if not len(created):
+        return 0.01
+
     variance = 0.0
     for cluster in created:
         delta_e = cluster - e_prev
         variance += creation_variance(delta_e)
 
-    return rate_prev + variance
+    rate = rate_prev + variance / len(created)
+
+    if rate <= 0:
+        return 0.01
+    else:
+        return rate
 
 
 # given a list of operators, normalize their creation rates to unity
 def normalize(operators):
     total = 0.0
+    count = 0
     for o in operators:
         total += o.rate
+        count += 1
 
-    for o in operators:
-        o.rate = o.rate / total
-    return
+    for i in range(count):
+        operators[i].rate = operators[i].rate / total
 
-
-# op = TwistOperator(0.5)
-# pop = initialize.make_population(2, 5)
-# print(pop[0].pos)
-# print(pop[1].pos)
-# print(res := op.apply(pop, 2))
-# print("After")
-# print(res[0].pos)
+    return operators
 
 
 
