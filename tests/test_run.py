@@ -1,3 +1,4 @@
+
 from clusters import initialize
 from clusters import management
 from clusters import selection
@@ -12,6 +13,7 @@ pop_size = 50
 pop = initialize.make_population(pop_size, n)
 
 operators = [management.AngularOperator(0.3), management.TwistOperator(0.4), management.ImmigrateOperator(0.3)]
+
 
 # loop
 while not selection.converged(pop, target_energy):
