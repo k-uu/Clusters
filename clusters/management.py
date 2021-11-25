@@ -22,8 +22,9 @@ class AngularOperator(Operator):
         rng = np.random.default_rng()
         targets = get_targets(self, clusters, size)
         percent = 0.05
+        size = targets[0].size
         for t in targets:
-            index_p = rng.choice(np.arange(0, t.size), int(math.ceil(t.size * percent)), replace=False)
+            index_p = rng.choice(np.arange(0, size), int(math.ceil(size * percent)), replace=False)
             for p in index_p:
                 r = np.sqrt(np.dot(t.pos[p], t.pos[p]))
                 pi = np.pi
@@ -46,23 +47,34 @@ class ImmigrateOperator(Operator):
         return initialize.make_population(target_count, particles)
 
 
-# produces individuals by rotating half the cluster about the x-axis by a random amount
+# produces individuals by rotating a half of the cluster about a random axis by [0.1-0.5] radians
 class TwistOperator(Operator):
     def apply(self, clusters, size):
         rng = np.random.default_rng()
         targets = get_targets(self, clusters, size)
-        index_p = len(targets[0].pos)
+        index_p = targets[0].size
         for t in targets:
             rot = rng.uniform(0.1, 0.5) * np.pi
+            point = initialize.get_point(1)
+            ax = point / np.linalg.norm(point)
             cos = np.cos(rot)
             sin = np.sin(rot)
-            rot_x_mat = np.array([[1, 0, 0],
-                                  [0, cos, -sin],
-                                  [0, sin, cos]])
+            rot_mat = cos * np.identity(3) + sin * np.cross(ax, np.identity(3) * -1) + (1 - cos) * np.outer(ax, ax)
             for p in range(index_p):
-                if np.dot(t.pos[p], [1, 0, 0]) >= 0:
-                    t.pos[p] = np.matmul(rot_x_mat, t.pos[p])
+                if np.dot(t.pos[p], ax) >= 0:
+                    t.pos[p] = np.matmul(rot_mat, t.pos[p])
         return targets
+
+
+# class SurfaceOperator(Operator):
+#     def apply(self, clusters, size):
+#         targets = get_targets(self, clusters, size)
+#         size = clusters[0].size
+#         for t in targets:
+#             max_distance_2 = max([np.dot(]
+#             index_p = np.random.randint(size)
+
+
 
 
 def mean_energy(clusters):
@@ -122,6 +134,3 @@ def normalize(operators):
         operators[i].rate = operators[i].rate / total
 
     return operators
-
-
-

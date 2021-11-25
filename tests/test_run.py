@@ -8,17 +8,16 @@ import numpy as np
 # initial population
 target_energy = -61.31799
 n = 17
-pop_size = 50
+pop_size = 40
 
 pop = initialize.make_population(pop_size, n)
 
 operators = [management.AngularOperator(0.3), management.TwistOperator(0.4), management.ImmigrateOperator(0.3)]
 
-
 # loop
 while not selection.converged(pop, target_energy):
 
-    pop = selection.remove_top_percent(pop, 20)
+    pop = selection.remove_top_percent(pop, 25)
 
     prev_energy = management.mean_energy(pop)
     
@@ -33,10 +32,9 @@ while not selection.converged(pop, target_energy):
     management.normalize(operators)
 
     print(min(pop))
-    for op in operators:
-        print(op.rate)
 
 print(pop)
+
 
 
 

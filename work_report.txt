@@ -1,7 +1,7 @@
 ## Group 6 Work Report ##
 
 Name: Oskar Blyt
-Total Number of Hours Spent: 16
+Total Number of Hours Spent: 26
 Contributions: 
 - Created TODO list and initial commit to git repository
 - First iteration of functions in initialization step:

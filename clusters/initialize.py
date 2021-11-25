@@ -1,4 +1,5 @@
 import numpy as np
+import numba
 
 
 class Cluster:
@@ -44,6 +45,7 @@ def calculate_radius(n):
 
 
 # LJ potential energy in reduced units: r = r / sigma, energy = energy / epsilon
+@ numba.njit
 def calculate_lj_energy(pos, n):
     energy = 0.0
     for i in range(n - 1):
