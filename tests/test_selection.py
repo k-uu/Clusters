@@ -10,5 +10,5 @@ print(init_pop)
 percent = 20
 
 final_pop = selection.remove_top_percent(init_pop, percent)
-
+print("after")
 print(final_pop)

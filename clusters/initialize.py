@@ -1,6 +1,8 @@
 import numpy as np
+import numba
 
 
+# Represents a cluster made up of n particles
 class Cluster:
 
     def __init__(self, n):
@@ -16,6 +18,26 @@ class Cluster:
     def __repr__(self):
         return "Particles: {}, Energy: {}".format(self.size, self.energy())
 
+    def __add__(self, other):
+        if isinstance(other, Cluster):
+            return self.energy() + other.energy()
+        else:
+            return self.energy() + other
+
+    def __sub__(self, other):
+        if isinstance(other, Cluster):
+            return self.energy() - other.energy()
+        else:
+            return self.energy() - other
+
+    def __rsub__(self, other):
+        if isinstance(other, Cluster):
+            return other.energy() - self.energy()
+        else:
+            return other - self.energy()
+
+    __radd__ = __add__
+
 
 # calculate radius to be used to initialize clusters given the number of particles
 def calculate_radius(n):
@@ -24,6 +46,7 @@ def calculate_radius(n):
 
 
 # LJ potential energy in reduced units: r = r / sigma, energy = energy / epsilon
+@ numba.njit
 def calculate_lj_energy(pos, n):
     energy = 0.0
     for i in range(n - 1):
