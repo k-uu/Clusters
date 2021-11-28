@@ -2,7 +2,6 @@
 from clusters import initialize
 from clusters import management
 from clusters import selection
-from clusters import minimize
 from tests import test_sphere
 from matplotlib import pyplot as plt
 
@@ -14,9 +13,6 @@ n = 26
 pop_size = 40
 
 pop = initialize.make_population(pop_size, n)
-
-for i, p in enumerate(pop):
-    pop[i] = minimize.minimize(p)
 
 operators = [management.AngularOperator(0.3), management.TwistOperator(0.4), management.ImmigrateOperator(0.3)]
 
@@ -31,8 +27,6 @@ while not selection.converged(pop, target_energy):
 
     for i, op in enumerate(operators):
         created = op.apply(pop, size)
-        for j, c in enumerate(created):
-            created[j] = minimize.minimize(c)
         rate = management.new_rate(prev_energy, created, op.rate)
         operators[i].rate = rate
         pop = np.concatenate((created, pop))

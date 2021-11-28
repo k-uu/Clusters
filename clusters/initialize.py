@@ -1,5 +1,6 @@
 import numpy as np
-import numba
+
+from clusters import minimize
 
 
 # Represents a cluster made up of n particles
@@ -8,9 +9,18 @@ class Cluster:
     def __init__(self, n):
         self.pos = populate_sphere(n)
         self.size = n
+        self.e = None
 
     def energy(self):
-        return calculate_lj_energy(self.pos, self.size)
+        if not self.e:
+            self.e, self.pos = minimize.minimize(self.pos)
+        return self.e
+
+    def duplicate(self):
+        copy = Cluster(1)
+        copy.size = self.size
+        copy.pos = self.pos
+        return copy
 
     def __lt__(self, other):
         return self.energy() < other.energy()
@@ -43,19 +53,6 @@ class Cluster:
 def calculate_radius(n):
     equilibrium_distance = 2 ** (1 / 6)  # minimum energy (equilibrium) distance given LJ reduced units
     return equilibrium_distance * (0.5 + pow((3 * n) / (4 * np.pi * np.sqrt(2)), (1 / 3)))
-
-
-# LJ potential energy in reduced units: r = r / sigma, energy = energy / epsilon
-@ numba.njit
-def calculate_lj_energy(pos, n):
-    energy = 0.0
-    for i in range(n - 1):
-        for j in range(i + 1, n):
-            r_ij = pos[i] - pos[j]
-            r_ij2 = np.dot(r_ij, r_ij)
-            r_ij6_inv = 1 / (r_ij2 ** 3)
-            energy += 4 * r_ij6_inv * (r_ij6_inv - 1)
-    return energy
 
 
 # populate a sphere with n randomly placed but separated points

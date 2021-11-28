@@ -75,7 +75,7 @@ def mean_energy(clusters):
 def get_targets(op, clusters, size):
     target_count = math.ceil(size * op.rate)
     rng = np.random.default_rng()
-    targets = rng.choice(copy.deepcopy(clusters), target_count, replace=False)
+    targets = rng.choice([c.duplicate() for c in clusters], target_count, replace=False)
     return targets
 
 
