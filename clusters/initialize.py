@@ -2,6 +2,7 @@ import numpy as np
 import numba
 
 
+# Represents a cluster made up of n particles
 class Cluster:
 
     def __init__(self, n):

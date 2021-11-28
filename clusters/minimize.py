@@ -1,11 +1,14 @@
 import scipy.optimize as optimize
 import numpy as np
+from clusters import initialize
 
 
+# perform local minimization of cluster energy based on current particle positions using BFGS algorithm
 def minimize(cluster):
     data = cluster.pos.flatten().tolist()
     size = len(data)
 
+    # lennard jones potential using flattened position array
     def lj(pos):
         energy = 0.0
         for i in range(0, size - 3, 3):
@@ -16,6 +19,7 @@ def minimize(cluster):
                 energy += 4 * r_ij6_inv * (r_ij6_inv - 1)
         return energy
 
+    # gradient of lennard jones potential
     def d_lj(pos):
         arr = np.empty(0)
         for i in range(0, size, 3):
@@ -29,9 +33,11 @@ def minimize(cluster):
             arr = np.append(arr, tmp)
         return arr
 
-    result = optimize.minimize(lj, data, method='BFGS', jac=d_lj)
-    print(result['message'], result['x'])
-    return np.reshape(result['x'], (-1, 3)), result['nfev']
+    result = optimize.minimize(lj, data, method='L-BFGS-B', jac=d_lj)
+    print(result['message'])
+    cp = initialize.Cluster(cluster.size)
+    cp.pos = np.reshape(result['x'], (-1, 3))
+    return cp
 
 
 
