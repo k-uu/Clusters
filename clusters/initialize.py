@@ -19,7 +19,7 @@ class Cluster:
     def duplicate(self):
         copy = Cluster(1)
         copy.size = self.size
-        copy.pos = self.pos
+        copy.pos = self.pos.copy()  # >:(
         return copy
 
     def __lt__(self, other):

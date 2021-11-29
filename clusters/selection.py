@@ -15,4 +15,3 @@ def converged(clusters, energy):
         if c.energy() <= energy:
             return True
     return False
-

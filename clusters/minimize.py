@@ -28,7 +28,7 @@ def minimize(positions):
                     r_ij = pos[i:i+3] - pos[j:j+3]
                     r_ij2 = np.dot(r_ij, r_ij)
                     r_ij6_inv = 1 / (r_ij2 ** 3)
-                    tmp += -24 / r_ij2 * r_ij6_inv * (2 * r_ij6_inv - 1) * r_ij
+                    tmp += -24 * r_ij6_inv * (2 * r_ij6_inv - 1) * r_ij / r_ij2
             arr = np.append(arr, tmp)
         return arr
 
@@ -36,6 +36,3 @@ def minimize(positions):
     print(result['message'])
     positions = np.reshape(result['x'], (-1, 3))
     return lj(result['x']), positions
-
-
-

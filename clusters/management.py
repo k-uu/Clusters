@@ -1,5 +1,4 @@
 import math
-import copy
 
 import numpy as np
 from clusters import initialize
