@@ -8,8 +8,8 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 # initial population
-target_energy = -108.315616
-n = 26
+target_energy = -61.31799
+n = 17
 pop_size = 40
 
 pop = initialize.make_population(pop_size, n)

@@ -33,6 +33,5 @@ def minimize(positions):
         return arr
 
     result = optimize.minimize(lj, data, method='L-BFGS-B', jac=d_lj)
-    print(result['message'])
     positions = np.reshape(result['x'], (-1, 3))
     return lj(result['x']), positions
