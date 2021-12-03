@@ -1,7 +1,7 @@
 ## Group 6 Work Report ##
 
 Name: Oskar Blyt
-Total Number of Hours Spent: 32
+Total Number of Hours Spent: 33
 Contributions: 
 - Created TODO list and initial commit to git repository
 - First iteration of functions in initialization step:
@@ -23,7 +23,7 @@ Contributions:
     - mean_energy
 - test_run
 - local minimization -> minimize.py
--
+- command line interface + package management
 
 Name: Alina Ehrl
 Total Number of Hours Spent: 2.5

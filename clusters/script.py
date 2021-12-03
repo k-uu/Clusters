@@ -16,7 +16,7 @@ def cli():
 @click.option("--energy", '-e', type=float, required=True, help="The empirical global minimum energy for the cluster")
 @click.option("--output", '-o', default="pos", help="Name of output file containing final positions")
 def run(particles, energy, output):
-    click.echo("Generating new population...")
+    click.echo("Generating new population", nl=False)
     # initial population
     target_energy = energy
     n = particles
@@ -29,6 +29,7 @@ def run(particles, energy, output):
 
     # loop
     while not selection.converged(pop, target_energy):
+
         pop = selection.remove_top_percent(pop, 25)
 
         prev_energy = management.mean_energy(pop)

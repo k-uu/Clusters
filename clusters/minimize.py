@@ -1,5 +1,6 @@
 import scipy.optimize as optimize
 import numpy as np
+import click
 
 
 # perform local minimization of cluster energy based on current particle positions using BFGS algorithm
@@ -33,5 +34,6 @@ def minimize(positions):
         return arr
 
     result = optimize.minimize(lj, data, method='L-BFGS-B', jac=d_lj)
+    click.echo(".", nl=False)
     positions = np.reshape(result['x'], (-1, 3))
     return lj(result['x']), positions

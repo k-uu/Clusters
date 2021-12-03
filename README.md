@@ -15,15 +15,15 @@ clusters given the number of particles. It produces an .xyz file containing the 
 
 requirements for package installation:
 
-- pip and virtualenv are installed
+- pip is installed
 
 Run instructions:
 
 - In a shell, locate the source code directory and do
- ```$ virtualenv venv``` to create a new virtual
+ ```$ python3 -m venv env``` to create a new virtual
 environment
-- do ```$ . venv/bin/activate``` on OS X and Linux or 
-```$ venv\scripts\activate``` on Windows to active the environment
+- do ```$ . env/bin/activate``` on OS X and Linux or 
+```$ env\scripts\activate``` on Windows to active the environment
 - ```$ pip install --editable .``` to install the package
 - the clusters script should now be available by doing ```$ clusters```
 - Use ```$ deactivate``` to close the virtual environment
