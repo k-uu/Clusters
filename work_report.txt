@@ -26,13 +26,16 @@ Contributions:
 - command line interface + package management
 
 Name: Alina Ehrl
-Total Number of Hours Spent: 26
+Total Number of Hours Spent: 27
 Contributions:
 - test_sphere.py
   - created test for successful initialization: plot sphere containing points
 - xyz_file.py
   - created file in xyz format with initial population
 - first iteration of selection function: test_selection
+- visualization of cluster structures using VMD
+- presentation preparation
+- research on suitable mutation operators for genetic algorithms --> implementation of twist operator
 
 
 Name: Selina Mather
