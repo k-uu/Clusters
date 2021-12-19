@@ -26,7 +26,7 @@ Contributions:
 - command line interface + package management
 
 Name: Alina Ehrl
-Total Number of Hours Spent: 2.5
+Total Number of Hours Spent: 26
 Contributions:
 - test_sphere.py
   - created test for successful initialization: plot sphere containing points
