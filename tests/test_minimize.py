@@ -12,7 +12,7 @@ c = initialize.Cluster(size)
 radius = initialize.calculate_radius(size)
 print(c.energy())
 plot_cluster(c, ax[0], 'r')
-res, steps = minimize.minimize(c)
+res, steps = minimize.optimize(c)
 c.pos = res
 print("minima of {} in {} steps".format(c.energy(), steps))
 plot_cluster(c, ax[1], 'g')

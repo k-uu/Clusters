@@ -6,6 +6,7 @@ from tests import test_sphere
 import numpy as np
 
 
+# Command Line Interface using Click
 @click.group()
 def cli():
     pass
@@ -15,6 +16,7 @@ def cli():
 @click.option("--particles", '-p', type=click.IntRange(1), required=True, help="The cluster particle count")
 @click.option("--energy", '-e', type=float, required=True, help="The empirical global minimum energy for the cluster")
 @click.option("--output", '-o', default="pos", help="Name of output file containing final positions")
+# starts genetic algorithm loop given the target energy and number of particles per cluster
 def run(particles, energy, output):
     click.echo("Generating new population", nl=False)
     # initial population
@@ -62,6 +64,7 @@ def run(particles, energy, output):
               type=click.Choice(['Twist', 'Angular', 'Immigrate'], case_sensitive=False),
               help="View the effects of an operator")
 @click.option('--particles', '-p', default=10, type=click.IntRange(1))
+# view the effects of operators
 def view(operator, particles):
     print(operator)
     if operator == 'Twist':
