@@ -1,4 +1,4 @@
-# clusters.py
+# clusters.py :eight_spoked_asterisk:
 
 ### By: Oskar Blyt, Alina Ehrl, Selina Mather
 
