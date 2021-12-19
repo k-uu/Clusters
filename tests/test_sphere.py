@@ -35,15 +35,10 @@ def plot_cluster(cluster, axis, color):
     plot_vectors(cluster.pos, axis, color)
 
 
-if __name__ == "__main__":
-    # input variables
-    # n: number of particles
-    # r: radius of sphere
-    # p: population size
+# plot the results from applying a given Operator on a cluster with n particles
+def test_operator(operator, n):
 
-    n = 25
     pop = initialize.make_population(1, n)
-    operator = management.TwistOperator(1)
     fig, axes = plt.subplots(1, subplot_kw={'projection': '3d'})
 
     plot_sphere(pop[0], axes)

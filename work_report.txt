@@ -1,7 +1,7 @@
 ## Group 6 Work Report ##
 
 Name: Oskar Blyt
-Total Number of Hours Spent: 27
+Total Number of Hours Spent: 36
 Contributions: 
 - Created TODO list and initial commit to git repository
 - First iteration of functions in initialization step:
@@ -23,10 +23,12 @@ Contributions:
     - mean_energy
 - test_run
 - local minimization -> minimize.py
--
+- script.py -> command line interface
+- setup.py -> package management
+- described the implementation of our code in the paper
 
 Name: Alina Ehrl
-Total Number of Hours Spent: 2.5
+Total Number of Hours Spent: 26
 Contributions:
 - test_sphere.py
   - created test for successful initialization: plot sphere containing points
@@ -36,6 +38,12 @@ Contributions:
 
 
 Name: Selina Mather
-Total Number of Hours Spent: 1
+Total Number of Hours Spent: 26
 Contributions:
+- researched different types of mutation operators and concluded on the best being the angular operator
+- implemented the angular operator
 - first iteration of selection function: test_selection
+- commented out 
+- created the overleaf template 
+- wrote up the abstract, introduction, some of the methodology and the results and discussion in the paper
+- wrote up relevant sections of my research and contribution in the powerpoint
