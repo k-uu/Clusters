@@ -1,0 +1,16 @@
+**This install guide requires Python version 3.4 and later**
+
+text succeeding '$' or  'C:' is to be executed in a shell of your choosing
+
+1. Navigate to a directory containing clusters.tar.gz
+
+2. Create a virtual environment by doing $ python3 -m venv env
+   WINDOWS C: py -m venv env
+
+3. Start the virtual envinment by doing $ source env/bin/activate 
+   WINDOWS C: env\Scripts\activate
+
+4. Install package into the virtual environment using $ python3 -m pip install clusters.tar.gz
+   WINDOWS C: py -m pip install clusters.tar.gz
+
+5. Run the script by doing $ clusters --help
